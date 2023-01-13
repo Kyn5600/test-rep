@@ -18,5 +18,8 @@ Test List:
 3. Test 3
 
 Done!       
-# Comment test
-Is this another MD?
+# Author Personal Notes
+This is a todo list. <br>
+Move all VRC Code to a new rep.<br>
+This can be used to write code from my laptop and desktop.<br>
+Make sure Immersed is installed on desktop.
