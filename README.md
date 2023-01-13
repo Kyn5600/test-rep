@@ -20,6 +20,6 @@ Test List:
 Done!       
 # Author Personal Notes
 This is a todo list. <br>
-Move all VRC Code to a new rep.<br>
-This can be used to write code from my laptop and desktop.<br>
-Make sure Immersed is installed on desktop.
+* Move all VRC Code to a new rep.<br>
+    This can be used to write code from my laptop and desktop.<br>
+* Make sure Immersed is installed on desktop.
