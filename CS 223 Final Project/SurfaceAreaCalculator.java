@@ -9,7 +9,6 @@
  * Methods: SA, SASI, main
  */
 
-
 import java.util.Scanner;
 
 public class SurfaceAreaCalculator{
