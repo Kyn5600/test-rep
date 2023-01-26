@@ -7,7 +7,7 @@
  * Attributes: l,w,h, userl, userw, userh, SA, SASI, userSA, userSASI, test1SA, test1SASI, test2SA, test2SASI, test3SA, test3SASI, scan
  * 
  * Methods: SA, SASI, main
- */
+ *************************************/
 
 import java.util.Scanner;
 
@@ -70,6 +70,7 @@ public class SurfaceAreaCalculator{
         } else {
             System.out.println("FAIL");
         }
+        scan.close();
     }
     
 }
