@@ -9,7 +9,7 @@ data = pd.read_csv("conversational_english.csv")
 
 def get_random_label_text(label):
     filtered_data = data[data['label'] == label]
-    random_index = random.randint(0, len(filtered_data) - 1)
+    random_index = random.randint(0, len(filtered_data))
     return filtered_data.iloc[random_index]['text']
 
 # Split the data into training and testing sets
@@ -32,8 +32,6 @@ while True:
     predicted_label = classifier.predict(user_input_features)[0]
     if predicted_label == 'feeling_question':
         predicted_label = 'feeling_response'
-    if predicted_label == 'question':
-        predicted_label = 'reg_response'
     if predicted_label == 'joke_request':
         predicted_label = 'joke'
     response = get_random_label_text(predicted_label)
@@ -42,10 +40,16 @@ while True:
     if correct == "no":
         new_label = input("Enter the correct label for the user input: ")
         new_response = input("Enter the correct response for the user input: ")
-        new_data = pd.DataFrame({'text': [user_input], 'label': [new_label], 'response': [new_response]})
-        data = data.append(new_data, ignore_index=True)
-        data.to_csv("conversational_english.csv", index=False)
+        if user_input in data['text'].values:
+            continue
+        else:
+            new_data = pd.DataFrame({'text': [user_input], 'label': [new_label], 'response': [new_response]})
+            data = data.append(new_data, ignore_index=True)
+            data.to_csv("conversational_english.csv", index=False)
     else: 
-        new_data = pd.DataFrame({'text': [user_input], 'label': [new_label]})
-        data = data.append(new_data, ignore_index=True)
-        data.to_csv("conversational_english.csv", index=False)
+        if user_input in data['text'].values:
+            continue
+        else:
+            new_data = pd.DataFrame({'text': [user_input], 'label': [predicted_label]})
+            data = data.append(new_data, ignore_index=True)
+            data.to_csv("conversational_english.csv", index=False)
