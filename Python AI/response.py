@@ -7,11 +7,6 @@ import random
 # Load the data from the CSV file
 data = pd.read_csv("conversational_english.csv")
 
-def get_random_label_text(label):
-    filtered_data = data[data['label'] == label]
-    random_index = random.randint(0, len(filtered_data)-1)
-    return filtered_data.at[random_index, 'text']
-
 # Split the data into training and testing sets
 training_data = data[:int(0.8 * len(data))]
 testing_data = data[int(0.8 * len(data)):]
@@ -36,7 +31,7 @@ while True:
         predicted_label = 'regresponse'
     if predicted_label == 'joke_request':
         predicted_label = 'joke'
-    response = get_random_label_text(predicted_label)
+    response = data.loc[data['label'] == predicted_label, 'response'].iloc[0]
     print(predicted_label)
     print("Response:", response)
     correct = input("Is this response correct? (yes/no): ")
