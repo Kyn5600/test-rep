@@ -9,14 +9,6 @@ testing_data = data[int(0.8 * len(data)):]
 vectorizer = CountVectorizer()
 text_features = vectorizer.fit_transform(training_data['text'])
 classifier = MultinomialNB().fit(text_features, training_data['label'])
-
-data2 = pd.read_csv("conversational_english_responses.csv")
-training_data2 = data2[:int(0.8 * len(data))]
-testing_data2 = data2[int(0.8 * len(data)):]
-vectorizer2 = CountVectorizer()
-text_features2 = vectorizer2.fit_transform(training_data2['text'])
-classifier2 = MultinomialNB().fit(text_features2, training_data2['label'])
-
 # Continuously get user input and generate a response based on the label
 while True:
     user_input = input("Enter a conversational text: ")
@@ -37,6 +29,8 @@ while True:
         data = data.append(new_data, ignore_index=True)
         data.to_csv("conversational_english.csv", index=False)
 
+        data2 = pd.read_csv("conversational_english_responses.csv")
+    
         new_data2 = pd.DataFrame({'text': [new_response], 'label': [new_label]})
         data2 = data2.append(new_data2, ignore_index=True)
         data2.to_csv("conversational_english.csv", index=False)
