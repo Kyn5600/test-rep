@@ -1,59 +1,74 @@
-import pandas as pd
+import re
+import numpy as np
+import random
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.linear_model import LogisticRegression
 
-# Load the data from a CSV file
-data = pd.read_csv("conversational_english.csv")
+# Define a list of predefined responses
+responses = [
+    "Hello!",
+    "I'm good, thanks for asking!",
+    "Goodbye!",
+    "I'm sorry, I don't understand.",
+]
 
-# Split the data into training and testing sets
-train_data = data[:int(len(data)*0.8)]
-test_data = data[int(len(data)*0.8):]
+# Define a function to clean the user input
+def clean_input(user_input):
+    # Convert the user input to lowercase
+    user_input = user_input.lower()
+    # Remove any punctuation
+    user_input = re.sub(r'[^\w\s]', '', user_input)
+    return user_input
 
-# Extract the features from the text data using CountVectorizer
+# Define a function to update the AI's knowledge
+def update_knowledge(user_input, response):
+    # Clean the user input
+    user_input = clean_input(user_input)
+    # Update the predefined responses
+    responses.append(response)
+    # Convert the updated predefined responses to a matrix of vectors
+    global similarity_scores
+    global vectorizer
+    vectorizer = CountVectorizer()
+    similarity_scores = vectorizer.fit_transform(responses).toarray()
+    # Train the AI model
+    global model
+    X = similarity_scores
+    y = [1] * len(responses)
+    model = LogisticRegression().fit(X, y)
+
+# Define a function to get the best response for the user input
+def get_response(user_input, responses, similarity_scores, model):
+    # Clean the user input
+    user_input = clean_input(user_input)
+    # Convert the user input to a vector
+    user_input_vector = vectorizer.transform([user_input]).toarray()
+    # Calculate the cosine similarity scores between the user input and the responses
+    scores = cosine_similarity(user_input_vector, similarity_scores)
+    # Predict the label for the user input using the AI model
+    label = model.predict(user_input_vector)
+    if label[0] == 1:
+        # The user input is similar to one of the predefined responses
+        index = np.argmax(scores)
+        return responses[index]
+    else:
+        # The user input is not similar to any of the predefined responses
+        return "I'm sorry, I don't understand."
+
+# Convert the predefined responses to a matrix of vectors
 vectorizer = CountVectorizer()
-train_features = vectorizer.fit_transform(train_data['text'])
-test_features = vectorizer.transform(test_data['text'])
+similarity_scores = vectorizer.fit_transform(responses).toarray()
 
-# Train a Multinomial Naive Bayes classifier on the training data
-nb = MultinomialNB()
-nb.fit(train_features, train_data['label'])
+# Train the AI model
+X = similarity_scores
+y = [1] * len(responses)
+model = LogisticRegression().fit(X, y)
 
-# Continuously get user input and make predictions
+# Start a conversation with the user
 while True:
-    user_input = input("Enter a conversational text: ")
-    if user_input == "exit":
+    user_input = input("You: ")
+    if user_input.lower() == "bye":
         break
-    input_features = vectorizer.transform([user_input])
-    prediction = nb.predict(input_features)[0]
-    print("Prediction:", prediction)
-    user_confirm = input("Is the prediction correct? (yes/no) ")
-    if user_confirm == "no":
-        if user_input in data['text'].values:
-            continue
-        else:
-            correct_label = input("Enter the correct label: ")
-            data = data.append({'text': user_input, 'label': correct_label}, ignore_index=True)
-            # Re-train the classifier with the updated data
-            train_data = data[:int(len(data)*0.8)]
-            test_data = data[int(len(data)*0.8):]
-            train_features = vectorizer.fit_transform(train_data['text'])
-            test_features = vectorizer.transform(test_data['text'])
-            nb = MultinomialNB()
-            nb.fit(train_features, train_data['label'])
-            # Save the updated data to the CSV file
-            data.to_csv("conversational_english.csv", index=False)
-    if user_confirm == "yes":
-        if user_input in data['text'].values:
-            continue
-        else:
-            correct_label = prediction
-            data = data.append({'text': user_input, 'label': correct_label}, ignore_index=True)
-            # Re-train the classifier with the updated data
-            train_data = data[:int(len(data)*0.8)]
-            test_data = data[int(len(data)*0.8):]
-            train_features = vectorizer.fit_transform(train_data['text'])
-            test_features = vectorizer.transform(test_data['text'])
-            nb = MultinomialNB()
-            nb.fit(train_features, train_data['label'])
-            # Save the updated data to the CSV file
-            data.to_csv("conversational_english.csv", index=False)
+    response = get_response(user_input, responses, similarity_scores, model)
+    print("AI: " + response)
