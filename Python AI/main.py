@@ -27,7 +27,7 @@ while True:
     prediction = nb.predict(input_features)[0]
     print("Prediction:", prediction)
     user_confirm = input("Is the prediction correct? (yes/no) ")
-    if user_confirm == "no":
+    if user_confirm == "no" or user_confirm == "No" or user_confirm == "n" or user_confirm == "N":
         if user_input in data['text'].values:
             continue
         else:
@@ -42,7 +42,7 @@ while True:
             nb.fit(train_features, train_data['label'])
             # Save the updated data to the CSV file
             data.to_csv("conversational_english.csv", index=False)
-    if user_confirm == "yes":
+    if user_confirm == "yes" or user_confirm == "Yes" or user_confirm == "y" or user_confirm == "Y":
         if user_input in data['text'].values:
             continue
         else:

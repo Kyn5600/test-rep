@@ -9,8 +9,8 @@ data = pd.read_csv("conversational_english.csv")
 
 def get_random_label_text(label):
     filtered_data = data[data['label'] == label]
-    random_index = random.randint(0, len(filtered_data))
-    return filtered_data.iloc[random_index]['text']
+    random_index = random.randint(0, len(filtered_data)-1)
+    return filtered_data.at[random_index, 'text']
 
 # Split the data into training and testing sets
 training_data = data[:int(0.8 * len(data))]
@@ -32,10 +32,13 @@ while True:
     predicted_label = classifier.predict(user_input_features)[0]
     if predicted_label == 'feeling_question':
         predicted_label = 'feeling_response'
+    if predicted_label == 'question':
+        predicted_label = 'regresponse'
     if predicted_label == 'joke_request':
         predicted_label = 'joke'
     response = get_random_label_text(predicted_label)
-    print(predicted_label," Response:", response)
+    print(predicted_label)
+    print("Response:", response)
     correct = input("Is this response correct? (yes/no): ")
     if correct == "no":
         new_label = input("Enter the correct label for the user input: ")
