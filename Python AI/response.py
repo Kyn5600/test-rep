@@ -31,17 +31,16 @@ while True:
         predicted_label = 'regresponse'
     if predicted_label == 'joke_request':
         predicted_label = 'joke'
-    response = data.loc[data['label'] == predicted_label, 'response'].iloc[0]
     print(predicted_label)
+    response = data.loc[data['label'] == predicted_label, 'text'].iloc[0]
     print("Response:", response)
     correct = input("Is this response correct? (yes/no): ")
     if correct == "no":
         new_label = input("Enter the correct label for the user input: ")
-        new_response = input("Enter the correct response for the user input: ")
         if user_input in data['text'].values:
             continue
         else:
-            new_data = pd.DataFrame({'text': [user_input], 'label': [new_label], 'response': [new_response]})
+            new_data = pd.DataFrame({'text': [user_input], 'label': [new_label]})
             data = data.append(new_data, ignore_index=True)
             data.to_csv("conversational_english.csv", index=False)
     else: 
