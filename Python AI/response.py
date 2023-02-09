@@ -14,8 +14,9 @@ testing_data2 = data2[int(0.8 * len(data)):]
 
 # Convert the text into numerical feature vectors using CountVectorizer
 vectorizer = CountVectorizer()
+vectorizer2 = CountVectorizer()
 text_features = vectorizer.fit_transform(training_data['text'])
-text_features2 = vectorizer.fit_transform(training_data2['text'])
+text_features2 = vectorizer2.fit_transform(training_data2['text'])
 
 # Train a Naive Bayes classifier on the training data
 classifier = MultinomialNB().fit(text_features, training_data['label'])
