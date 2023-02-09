@@ -31,7 +31,7 @@ while True:
     predicted_label = classifier.predict(user_input_features)[0]
     if predicted_label == 'joke_request':
         predicted_label = 'joke'
-    response = data.loc[data2['label'] == predicted_label, 'text'].sample().values[0]
+    response = data2.loc[data2['label'] == predicted_label, 'text'].sample().values[0]
     print(predicted_label," Response:", response)
     correct = input("Is this response correct? (yes/no): ")
     if correct == "no":
