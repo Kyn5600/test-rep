@@ -45,3 +45,7 @@ while True:
         new_data = pd.DataFrame({'text': [user_input], 'label': [new_label], 'response': [new_response]})
         data = data.append(new_data, ignore_index=True)
         data.to_csv("conversational_english.csv", index=False)
+    else: 
+        new_data = pd.DataFrame({'text': [user_input], 'label': [new_label]})
+        data = data.append(new_data, ignore_index=True)
+        data.to_csv("conversational_english.csv", index=False)
