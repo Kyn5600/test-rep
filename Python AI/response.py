@@ -25,14 +25,14 @@ while True:
         break
     user_input_features = vectorizer.transform([user_input])
     predicted_label = classifier.predict(user_input_features)[0]
+    if predicted_label == 'joke_request':
+        predicted_label = 'joke'
     if predicted_label == 'feeling_question':
         predicted_label = 'feeling_response'
     if predicted_label == 'question':
         predicted_label = 'regresponse'
-    if predicted_label == 'joke_request':
-        predicted_label = 'joke'
     print(predicted_label)
-    response = data.loc[data['label'] == predicted_label, 'text'].iloc[0]
+    response = data.loc[data['label'] == predicted_label, 'text'].sample().values[0]
     print("Response:", response)
     correct = input("Is this response correct? (yes/no): ")
     if correct == "no":
