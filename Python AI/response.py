@@ -1,9 +1,16 @@
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
+import random 
+
 
 # Load the data from the CSV file
 data = pd.read_csv("conversational_english.csv")
+
+def get_random_label_text(label):
+    filtered_data = data[data['label'] == label]
+    random_index = random.randint(0, len(filtered_data) - 1)
+    return filtered_data.iloc[random_index]['text']
 
 # Split the data into training and testing sets
 training_data = data[:int(0.8 * len(data))]
@@ -29,7 +36,7 @@ while True:
         predicted_label = 'reg_response'
     if predicted_label == 'joke_request':
         predicted_label = 'joke'
-    response = data.loc[data['label'] == predicted_label, 'text'].sample().values[0]
+    response = get_random_label_text(predicted_label)
     print(predicted_label," Response:", response)
     correct = input("Is this response correct? (yes/no): ")
     if correct == "no":
