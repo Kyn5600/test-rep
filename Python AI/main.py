@@ -1,10 +1,11 @@
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
-
+import os
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 
+os.system("cls")
 # Load the data from a CSV file
 data = pd.read_csv("conversational_english.csv")
 
