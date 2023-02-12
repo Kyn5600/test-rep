@@ -61,3 +61,5 @@ while True:
             nb.fit(train_features, train_data['label'])
             # Save the updated data to the CSV file
             data.to_csv("conversational_english.csv", index=False)
+    if user_confirm == "cancel":
+        continue
