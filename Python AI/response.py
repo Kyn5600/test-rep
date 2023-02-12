@@ -101,3 +101,9 @@ while True:
                     data.to_csv("conversational_english.csv", index=False)
             other_last_input = last_input
             last_label = predicted_label
+            if last_label == 'farewell':
+                endCheck = input("Would you like to end this session?")
+                if endCheck == 'yes':
+                    break
+                else:
+                    continue
