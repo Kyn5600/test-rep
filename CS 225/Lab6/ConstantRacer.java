@@ -1,3 +1,24 @@
+/*************************************
+ * Class ConstantRacer
+ * Author: 
+ * 
+ * Purpose: Racer class with constant speed.
+ * 
+ * Attributes:  speed:int
+ *              location: int
+ * 				racerNumber: int
+ * 				racerType: String
+ * 
+ * Methods: +move():void
+ * 			#randomFrom(int,int):int
+ * 			+getLocation():int
+ * 			+setLocation(int):void
+ * 			+getRacerNumber():int
+ * 			+setRacerNumber(int):void
+ * 			+getRacerType():String
+ * 			+setRacerType(String):void
+ * 			#printRacer():void
+ *************************************/
 public class ConstantRacer extends GenericRacer{
     private int speed;
     public ConstantRacer(int id) {

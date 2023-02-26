@@ -1,3 +1,24 @@
+/*************************************
+ * Class GenericRacer
+ * Author: 
+ * 
+ * Purpose: It is a parent class for the racer types.
+ * 
+ * Attributes:  location: int
+ * 				racerNumber: int
+ * 				racerType: String
+ * 
+ * Methods: +move():void
+ * 			#randomFrom(int,int):int
+ * 			+getLocation():int
+ * 			+setLocation(int):void
+ * 			+getRacerNumber():int
+ * 			+setRacerNumber(int):void
+ * 			+getRacerType():String
+ * 			+setRacerType(String):void
+ * 			#printRacer():void
+ *************************************/
+
 public class GenericRacer {
 
 	// TODO: Create attributes

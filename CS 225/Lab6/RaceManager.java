@@ -1,3 +1,19 @@
+/*************************************
+ * Class RaceManager
+ * Author: 
+ * 
+ * Purpose: Ask a user for the number of racers and call the racers methods until one racer hits the finishline.
+ * 
+ * Attributes: 	-racersArray: GenericRacer[]
+ * 				+numOfRandRacers:int
+ * 				+numOfConstRacers:int
+ * 				-raceOver:boolean
+ * 				-winner:int
+ * 
+ * Methods: +main(String[]): void
+ * 			+raceLineup():void
+ * 			-startRace():void
+ *************************************/
 import java.util.Scanner;
 
 public class RaceManager {
