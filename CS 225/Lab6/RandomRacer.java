@@ -1,6 +1,7 @@
 /*************************************
  * Class RandomRacer
- * Author: 
+ * Author: Zachery Rich and Nathan Wesley
+ * Date: 2/26/23
  * 
  * Purpose: Racer class with random speed.
  * 

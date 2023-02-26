@@ -1,6 +1,7 @@
 /*************************************
  * Class RaceManager
- * Author: 
+ * Author: Zachery Rich and Nathan Wesley
+ * Date: 2/26/23
  * 
  * Purpose: Ask a user for the number of racers and call the racers methods until one racer hits the finishline.
  * 

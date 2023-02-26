@@ -1,6 +1,7 @@
 /*************************************
  * Class GenericRacer
- * Author: 
+ * Author: Zachery Rich and Nathan Wesley
+ * Date: 2/26/23
  * 
  * Purpose: It is a parent class for the racer types.
  * 
