@@ -34,5 +34,10 @@ public class GenericRacer {
 	public void setRacerNumber(int racerNumber){
 		this.racerNumber = racerNumber;
 	}
-	
+	public String getRacerType(){
+		return racerType;
+	}	
+	public void setRacerType(String racerType){
+		this.racerType = racerType;
+	}
 }

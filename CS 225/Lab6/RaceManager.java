@@ -25,7 +25,7 @@ public class RaceManager {
 
 		// TODO: Assign a racer to each element in racersArray
 		for(int i=0;i<numOfRacers;i++){
-			racersArray[i] = new GenericRacer(0,i+1);
+			racersArray[i] = new GenericRacer(i+1,"random");
 		}
 
 		// TODO: Call race() method
