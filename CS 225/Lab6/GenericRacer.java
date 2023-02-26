@@ -5,13 +5,14 @@ public class GenericRacer {
 	// TODO: Create attributes
 	private int location;
 	private int racerNumber;
+	private String racerType = "";
 
 
 	// TODO: Create Constructor
 	public GenericRacer(int loc, int num){
 		location = loc;
 		racerNumber = num;
-	}
+	} 
 	// TODO: Create move() method
 	// Note: Use: Math.random()*10 to get random number from 0 to 10
 	public void move(){
