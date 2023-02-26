@@ -7,7 +7,6 @@ public class GenericRacer {
 	private int racerNumber;
 	private String racerType = "";
 
-
 	// TODO: Create Constructor
 	public GenericRacer(int loc, int num){
 		location = loc;
