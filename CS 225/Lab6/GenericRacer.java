@@ -1,11 +1,9 @@
-package Lab6;
-
 public class GenericRacer {
 
 	// TODO: Create attributes
-	private int location;
-	private int racerNumber;
-	private String racerType = "";
+	protected int location;
+	protected int racerNumber;
+	protected String racerType = "";
 
 	// TODO: Create Constructor
 	public GenericRacer(int id, String type){
@@ -15,7 +13,7 @@ public class GenericRacer {
 	} 
 	// TODO: Create move() method
 	// Note: Use: Math.random()*10 to get random number from 0 to 10
-	protected void move(){
+	public void move(){
 	}
 	protected int randomFrom(int min, int max){
 		double randomNum = Math.random() * (max - min) +min;
@@ -39,5 +37,10 @@ public class GenericRacer {
 	}	
 	public void setRacerType(String racerType){
 		this.racerType = racerType;
+	}
+	protected void printRacer(){
+		System.out.println(this.getRacerType());
+		System.out.println(this.getRacerNumber());
+		System.out.println(this.getLocation());
 	}
 }
