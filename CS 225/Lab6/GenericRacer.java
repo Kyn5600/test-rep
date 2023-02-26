@@ -8,14 +8,18 @@ public class GenericRacer {
 	private String racerType = "";
 
 	// TODO: Create Constructor
-	public GenericRacer(int loc, int num){
-		location = loc;
-		racerNumber = num;
+	public GenericRacer(int id, String type){
+		location = 0;
+		racerNumber = id;
+		racerType = type;
 	} 
 	// TODO: Create move() method
 	// Note: Use: Math.random()*10 to get random number from 0 to 10
-	public void move(){
-		location+=Math.random()*10;
+	protected void move(){
+	}
+	protected int randomFrom(int min, int max){
+		double randomNum = Math.random() * (max - min) +min;
+		return (int)(randomNum);
 	}
 	// TODO: Generate Getters and Setters
 	public int getLocation(){
