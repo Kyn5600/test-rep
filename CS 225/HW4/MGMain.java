@@ -2,6 +2,7 @@
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -11,7 +12,7 @@ import java.util.Random;
 public class MGMain {
     private GameController ctrl;
 
-    public static void main(String[] args) throws FileNotFoundException{
+    public static void main(String[] args) throws IOException{
         MGMain ctrl = new MGMain();
         Random rnd = new Random();
         rnd.setSeed(rnd.nextLong());
@@ -45,8 +46,6 @@ public class MGMain {
                     fileBool.add(Boolean.parseBoolean(cols[i]));
                 gc.createMaze(x, y,fileBool);
             }
-            br.close();
-            fr.close();
         } else if(mazeOrRand.equals("random")){
             ArrayList<Boolean> isLockedTrue = new ArrayList<Boolean>();
             System.out.println("What size would you like the maze to be? Please enter an odd number.");
