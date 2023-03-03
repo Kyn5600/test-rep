@@ -20,11 +20,12 @@ public class MGMain {
 
         System.out.println("Read from file or randomize maze? (Input file or random)");
         String mazeOrRand = scan.nextLine();
+        mazeOrRand = mazeOrRand.toLowerCase();
 
         if(mazeOrRand.equals("file")){
             // Assume file is CSV or text file set up like this:
             // x,y,True,True,False,False
-            
+
             System.out.println("Enter Filename: ");
             String filename = scan.nextLine();
             File file = new File(filename);
