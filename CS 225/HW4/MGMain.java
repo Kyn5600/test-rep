@@ -34,13 +34,15 @@ public class MGMain {
             double size = scan.nextDouble();
             if(size % 2 != 0){
                 gc.createMaze((int)size, (int)size);
-                for(int i = 0; i<size*size;i++){
+                for(int i = 0; i<size;i++){
                     for(int j = 0; j<size;j++){
-                        for(int k=0;k<4;k++){
-                            if(j>0){
-                                isLockedTrue.set(k,rnd.nextBoolean());
-                            }else{
+                        if (j == 0) {
+                            for (int l = 0; l < 4; l++) {
                                 isLockedTrue.add(rnd.nextBoolean());
+                            }
+                        } else {
+                            for (int l = 0; l < 4; l++) {
+                                isLockedTrue.set(l, rnd.nextBoolean());
                             }
                         }
                         gc.createMaze(i,j,isLockedTrue);
