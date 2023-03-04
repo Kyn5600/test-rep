@@ -1,3 +1,33 @@
+/*************************************
+ * Class: GameController
+ * Author: 
+ * Date: 3/3/23
+ * 
+ * Purpose: Controls the maze generation.
+ * 
+ * Attributes:  -maze:GenericTile[][]
+ *              -agent:GenericAgent
+ *              -agentLocation:int[2]
+ *              -turnCounter:int
+ *              -exitStrings:String[][][]
+ *              +tempString:String
+ *              +tempBool:Boolean
+ * 
+ * Methods: +playGame():void
+ *          +agentIsInGoal():boolean
+ *          +hasAgentWon():boolean
+ *          +hasAgentLost():boolean
+ *          +moveAgent:void
+ *          +isMoveLegal():boolean
+ *          +isDoorLocked(GenericTile, int):boolean
+ *          +createMaze(int, int):void
+ *          +createMaze(int,int,ArrayList<Boolean>):void
+ *          +printMaze():void
+ *          +printMazeSummary():void
+ *          +convertExitsToString():void
+ *          +printAgentLocation():void
+ *          +setAgent(Agent):void
+ *************************************/
 //Edits: Changed createMaze(int,int,boolean) to (int,int,ArrayList<Boolean>)
 //       Added String[][] exitStrings for array of exitStrings for convertExitstoString()
 //       Changed convertExitString() to void

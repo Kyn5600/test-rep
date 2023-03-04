@@ -1,3 +1,25 @@
+/*************************************
+ * Class: MGMain
+ * Author: 
+ * Date: 3/3/23
+ * 
+ * Purpose: Is to control the program by using the GameController.
+ * 
+ * Attributes:  -ctrl:GameController
+ *              +mazeOrRand:String
+ *              +length:int
+ *              +row:String
+ *              +x:int  
+ *              +y:int
+ *              +fileBool:ArrayList<Boolean>
+ *              +isLockTrue:ArrayList<Boolean>
+ *              +size:double
+ * 
+ * Methods: +main(String[]):void
+ *          -isMazeLegal(int, int):Boolean
+ *          -createAgent(Agent):void
+ *          -playGame():void
+ *************************************/
 //Edits: Removed both createMaze methods. Reason: Redundant for GameController createMaze methods.
 
 import java.io.File;
