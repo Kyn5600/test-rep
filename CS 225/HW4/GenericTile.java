@@ -1,3 +1,19 @@
+/*************************************
+ * Class: GenericTile
+ * Author: 
+ * Date: 3/3/23
+ * 
+ * Purpose: Parent class for the tiles.
+ * 
+ * Attributes:  -exits:Boolean[4]
+ *              -description:String
+ * 
+ * Methods: +enterAction():void
+ *          +exitAction():void
+ *          +specialAction():void
+ *          +setExits(ArrayList<Boolean>):void
+ *          +getExits():boolean
+ *************************************/
 //Edits: Added setter and getter for exit
 import java.util.ArrayList;
 
