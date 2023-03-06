@@ -1,3 +1,25 @@
+/*************************************
+ * Class: MGMain
+ * Author: 
+ * Date: 3/3/23
+ * 
+ * Purpose: Is to control the program by using the GameController.
+ * 
+ * Attributes:  -ctrl:GameController
+ *              +mazeOrRand:String
+ *              +length:int
+ *              +row:String
+ *              +x:int  
+ *              +y:int
+ *              +fileBool:ArrayList<Boolean>
+ *              +isLockTrue:ArrayList<Boolean>
+ *              +size:double
+ * 
+ * Methods: +main(String[]):void
+ *          -isMazeLegal(int, int):Boolean
+ *          -createAgent(Agent):void
+ *          -playGame():void
+ *************************************/
 //Edits: Removed both createMaze methods. Reason: Redundant for GameController createMaze methods.
 
 import java.io.File;
@@ -13,6 +35,8 @@ public class MGMain {
     private GameController ctrl;
 
     public static void main(String[] args) throws IOException{
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
         MGMain ctrl = new MGMain();
         Random rnd = new Random();
         rnd.setSeed(rnd.nextLong());
@@ -49,24 +73,30 @@ public class MGMain {
         } else if(mazeOrRand.equals("random")){
             ArrayList<Boolean> isLockedTrue = new ArrayList<Boolean>();
             System.out.println("What size would you like the maze to be? Please enter an odd number.");
-            double size = scan.nextDouble();
-            if(size % 2 != 0){
-                gc.createMaze((int)size, (int)size);
-                for(int i = 0; i<size;i++){
-                    for(int j = 0; j<size;j++){
-                        if (j == 0) {
-                            for (int l = 0; l < 4; l++) {
-                                isLockedTrue.add(rnd.nextBoolean());
+            while(true){
+                double size = scan.nextDouble();
+                if(size % 2 != 0){
+                    gc.createMaze((int)size, (int)size);
+                    for(int i = 0; i<size;i++){
+                        for(int j = 0; j<size;j++){
+                            if (j == 0) {
+                                for (int l = 0; l < 4; l++) {
+                                    isLockedTrue.add(rnd.nextBoolean());
+                                }
+                            } else {
+                                for (int l = 0; l < 4; l++) {
+                                    isLockedTrue.set(l, rnd.nextBoolean());
+                                }
                             }
-                        } else {
-                            for (int l = 0; l < 4; l++) {
-                                isLockedTrue.set(l, rnd.nextBoolean());
-                            }
+                            gc.createMaze(i,j,isLockedTrue);
                         }
-                        gc.createMaze(i,j,isLockedTrue);
                     }
+                    gc.printMaze();
+                } else {
+                    System.out.println("Please enter an odd number.");
+                    continue;
                 }
-                gc.printMaze();
+                break;
             }
         }
         scan.close();
